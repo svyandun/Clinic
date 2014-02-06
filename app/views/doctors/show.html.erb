@@ -1,0 +1,33 @@
+<h1 class="text-right" style = "margin-top: 40px;"><%= @doctor.name %></h1>
+<p class="text-primary text-right" style="margin-bottom:50px;"><b><%= @doctor.specialty.name %></b></p>
+
+<h3>Pacientes</h3>
+
+    <% i = 0 %>
+    <% @patients.each do |p| %>
+
+        <%if i == 0%>
+            <div class = "row">
+        <% end %>
+
+                <div class="col-md-4">
+                    <img class="img-responsive img-circle " style = "margin-left:auto; margin-right:auto;" src="/assets/no_avatar.png">
+                    <h4 class="caption"> <%= p.name %><h4>
+                    <p ><small><%= p.diseases %></small></p>
+                    <%= link_to "Mas detalles", p, { :class => "btn btn-primary pull-right"}%>
+                </div>
+
+        <% i = i + 1%>
+
+        <%if i == 3%>
+            </div>
+            <% i = 0%>
+        <% end %>
+
+    <% end %>
+
+    <% if i < 3 && i != 0 %>
+            </div>
+    <% end %>
+
+</div>

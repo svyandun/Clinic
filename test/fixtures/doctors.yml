@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  specialty_id: 1
+  firstName: MyString
+  lastName: MyString
+  birthdate: 2013-11-14
+  username: MyString
+  password: MyString
+
+two:
+  specialty_id: 1
+  firstName: MyString
+  lastName: MyString
+  birthdate: 2013-11-14
+  username: MyString
+  password: MyString

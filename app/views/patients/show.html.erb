@@ -1,0 +1,65 @@
+<div class="panel panel-primary" style = "margin-top: 50px;">
+    <div class="panel-heading">
+        Datos del Paciente
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-square" src="/assets/no_avatar.png">
+            </div>
+            <div class="col-md-6">
+                <h3><%= @patient.name%></h3>
+                <table class="table table-condensed table-responsive table-user-information">
+                    <tbody>
+                        <tr>
+                            <td>Fecha de Nacimiento:</td>
+                            <td><%= @patient.birthdate %></td>
+                        </tr>
+                        <tr>
+                            <td>Género: </td>
+                            <td><%= @patient.sex %></td>
+                        </tr>
+                        <tr>
+                            <td>Registrado desde:</td>
+                            <td><%= @patient.created_at %></td>
+                        </tr>
+                        <tr>
+                            <td>Consultas: </td>
+                            <td><%= @patient.appointments.count %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Enfermedades
+    </div>
+    <div class="panel-body">
+        <%= @patient.diseases %>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Alergias
+    </div>
+    <div class="panel-body">
+        <%= @patient.alergies %>
+    </div>
+</div>
+<h3>Consultas</h3>
+<div class= "row">  
+<% @appointments.each do |a| %>
+   <div class="col-md-4" >
+        <div class="panel panel-default" >
+            <div class="panel-heading"><%= a.doctor.name %></div>
+            <div class="panel-body"> <p><small><%= a.description %></small></p>
+            <%= link_to "Mas detalles", a, { :class => "btn btn-default pull-right"}%>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
+ <%= link_to "Nueva Consulta", new_appointment_path(:patient_id => @patient.id), { :class => "btn btn-primary pull-right"}%>

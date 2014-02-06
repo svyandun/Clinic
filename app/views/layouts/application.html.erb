@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ClinicModel</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body style = "padding-top: 50px; padding-bottom:100px;">
+<!-- Navbar -->
+<div class = "navbar navbar-default navbar-fixed-top " >
+	<div class = "container">
+		<div class = "navbar-header">	
+			<!-- Boton de Menu -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".collapseBar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<! Titulo de navbar -->
+			<a href = "/home/index" class = "navbar-brand">CLINICA DE MAYO</a>
+		</div>
+		<!-- Barra colapsable -->
+		<div class="collapse navbar-collapse collapseBar">
+			<ul class="nav navbar-nav navbar-right">
+				<% if @is_logged %>
+					<li><a href="/signout">SIGN OUT</a></li>
+				<% else %>
+					<li><a href="/signin">SIGN IN</a></li>
+				<% end %>
+				
+				<li><a href="/doctors/<%= session[:user_id]%>">PACIENTES</a></li>
+				<li><a href="#contact">CITAS</a></li>
+				<li><a href="#contact">MI CUENTA</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class= "container" > 
+<%= yield %>
+</div>
+</body>
+</html>
+

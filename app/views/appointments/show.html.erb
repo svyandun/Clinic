@@ -1,0 +1,65 @@
+<div class="panel panel-primary" style = "margin-top: 20px;">
+    
+     <div class="panel-heading">
+        <h4><%= @appointment.name %></h4>
+    </div>
+   
+    
+</div>
+
+<div class = "row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                 Descripción
+            </div>
+            <div class="panel-body">
+                <p><%= @appointment.description %></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Síntomas
+            </div>
+            <div class="panel-body">
+                <p><%= @appointment.symptoms %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Diagnóstico
+            </div>
+            <div class="panel-body">
+                <p><%= @appointment.symptoms %></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+  <table class ="table table-stripped">
+    <tr>
+        <th>Tratamiento</th>
+        <th class= "text-right">Precio</th>
+    </tr>
+        <% total = 0%>
+        <% @appointment.treatments.each do |t| %> 
+        <tr> 
+            <td><%= t.name %></td>
+            <td class= "text-right"><%= t.price%></td>
+            <tr>
+            <% total = total + t.price %>
+        <% end %>
+    <tr>
+        <td class= "text-right"> <h3> Total</h3></td>
+       <td class= "text-right"><h3><%= total %></h3></td>
+    </tr>
+  </table>
+
+   <%= link_to "Atras", @appointment.patient, { :class => "btn btn-default"}%>

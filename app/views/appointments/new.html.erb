@@ -1,0 +1,76 @@
+
+<%= form_for @appointment, :html =>{:autocomplete => "off"}  do |f|  %>
+    <div class = "form-group" style = 'margin-top: 20px;'>
+        <p>Nombre</p>
+        <%= f.text_field :name,{:class => "form-control"}%>
+    </div>
+<div class = "row">
+    <div class="col-md-4">
+    <div class = "form-group">
+         <%= f.hidden_field :patient_id, :value => @patient_id %>
+        <p>Descripción</p>
+        <%= f.text_area :description,{:class => "form-control"} %>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class = "form-group">
+        <p>Síntomas</p>
+        <%= f.text_area :symptoms,{:class => "form-control"} %>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class = "form-group">
+        <p>Diagnóstico</p>
+        <%= f.text_area :diagnosis,{:class => "form-control"} %>
+    </div>
+    </div>
+</div>
+    <p>Tratamientos</p>
+    <table class ="table table-stripped">
+    <tr>
+        <th>Tratamiento</th>
+        <th class= "text-right">Precio</th>
+    </tr>
+     <% for treatment in @treatments%>
+        <tr>
+            <div class="checkbox">
+                <td>
+                    <%= check_box_tag "appointment[treatment_ids][]",
+                        treatment.id, false, {:price => "#{treatment.price}", :class => "treatments"}%>
+                    <%= treatment.name%>
+                </td>
+                <td class= "text-right">
+                    <%= treatment.price %>
+                </td>
+           </div>
+        </tr>
+    <% end %>
+    <tr>
+        <th class= "text-right"><h3> Total</h3></th>
+        <th class= "text-right"><h3 id="total">0</h3></th>
+    </tr>
+    </table>
+    <%= f.submit 'Guardar Consulta' , :class => 'btn btn-lg btn-primary btn-block' %>
+<% end %>
+
+
+<script type="text/javascript">
+var treatments = document.getElementsByClassName('treatments');
+
+function price() {
+    var result = document.getElementById('total'),
+        curPrice = 0,
+        treatments = document.getElementsByClassName('treatments');
+    for (var i = 0, len = treatments.length; i < len; i++) {
+        if (treatments[i].checked) {
+            curPrice += parseFloat(treatments[i].getAttribute('price'));
+        }
+    }
+    result.firstChild.nodeValue = curPrice;
+}
+
+for (var i = 0, len = treatments.length; i < len; i++) {
+    treatments[i].addEventListener('change', price);
+}
+    
+</script>
